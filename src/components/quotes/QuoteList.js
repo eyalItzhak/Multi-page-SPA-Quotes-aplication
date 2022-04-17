@@ -4,7 +4,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
 
-
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
     if (ascending) {
@@ -23,10 +22,14 @@ const QuoteList = (props) => {
 
   const isSortingAscending = queryParams.get("sort") === "asc";
 
-  const sortedQuotes = sortQuotes (props.quotes,isSortingAscending)
+  const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
+    });
+    // history.push(`${location.pathname}?sort=${(isSortingAscending ? "desc" : "asc")}`);
   };
 
   return (
