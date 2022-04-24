@@ -20,7 +20,11 @@ const QuoteForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
+    // some basic validation
+   if(enteredAuthor.length ===0 ||enteredText.length ===0 ){
+     alert("Author or Text is empty! ")
+     return
+   }
 
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
   }
